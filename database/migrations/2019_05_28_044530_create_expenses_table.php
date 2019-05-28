@@ -15,7 +15,10 @@ class CreateExpensesTable extends Migration
     {
         Schema::create('expenses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
+            $table->string('username')->default('text');
+            $table->integer('uang_keluar')->unsigned()->nullable()->default(12);
+            $table->string('description', 160)->nullable()->default('text');
+            $table->date('created_at')->nullable()->default(new DateTime());
         });
     }
 
