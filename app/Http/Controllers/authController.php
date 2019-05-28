@@ -30,6 +30,31 @@ class authController extends Controller
                 return User::all();
             }
         }
+        
+    }
+
+    public function login(Request $request)
+    {
+        # code...
+        if ($request->isMethod('POST')) {
+            # code...            
+            $username = $request->username;
+            $passwordd = $request->password;
+            $make_hash = Hash::make($passwordd);
+
+            $cek = User::
+                where('username','=',$username)   
+                ->get();
+
+            $count = $cek->count();
+
+            if ($count  == 1) {
+                return "login sukses";
+            } else {
+                return "login gagal";
+            }
+            return "false";
+        }
     }
 
     public function hello()
